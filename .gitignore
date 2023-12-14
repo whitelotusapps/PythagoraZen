@@ -1,0 +1,12 @@
+# FILES
+__init__.py
+.pylintrc
+/*.py
+!PythagoraZen.py
+
+# FOLDERS
+.vscode
+__pycache__/
+LOGS/
+config_data/credentials/
+user_data/

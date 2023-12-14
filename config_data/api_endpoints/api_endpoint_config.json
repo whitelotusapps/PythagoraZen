@@ -1,0 +1,881 @@
+{
+    "ticket_end_points": [
+        {
+            "list_tickets": {
+                "name": "List Tickets",
+                "end_point": "/api/v2/tickets",
+                "request_type": "GET",
+                "url": "https://developer.zendesk.com/api-reference/ticketing/tickets/tickets/#list-tickets",
+                "description": "To get a list of all tickets in your account, use the Incremental Ticket Export, Cursor Based or Incremental Ticket Export, Time Based endpoint.",
+                "mongodb_collection": "tickets",
+                "pythagorazen_status": "inactive"
+            }
+        },
+        {
+            "list_deleted_tickets": {
+                "name": "List Deleted Tickets",
+                "end_point": "/api/v2/deleted_tickets",
+                "request_type": "GET",
+                "url": "https://developer.zendesk.com/api-reference/ticketing/tickets/tickets/#list-deleted-tickets",
+                "description": "Returns a maximum of 100 deleted tickets per page. See Pagination.\n\nThe results includes all deleted (and not yet archived) tickets that have not yet been scrubbed in the past 30 days. Archived tickets are not included in the results. See About archived tickets in the Support Help Center.",
+                "mongodb_collection": "deleted_tickets",
+                "pythagorazen_status": "inactive"
+            }
+        },
+        {
+            "list_collaborators_for_a_ticket": {
+                "name": "List Collaborators for a Ticket",
+                "end_point": "/api/v2/tickets/{ticket_id}/collaborators",
+                "end_point_dependencies": {
+                    "mongodb_dependency_collection": "tickets",
+                    "mongodb_dependency_collection_key": "id"
+                },
+                "request_type": "GET",
+                "url": "https://developer.zendesk.com/api-reference/ticketing/tickets/tickets/#list-collaborators-for-a-ticket",
+                "description": "No description",
+                "mongodb_collection": "collaborators_for_a_ticket",
+                "pythagorazen_status": "inactive"
+            }
+        },
+        {
+            "list_followers_for_a_ticket": {
+                "name": "List Followers for a Ticket",
+                "end_point": "/api/v2/tickets/{ticket_id}/followers",
+                "end_point_dependencies": {
+                    "mongodb_dependency_collection": "tickets",
+                    "mongodb_dependency_collection_key": "id"
+                },
+                "request_type": "GET",
+                "url": "https://developer.zendesk.com/api-reference/ticketing/tickets/tickets/#list-followers-for-a-ticket",
+                "description": "Returns any users who follow the ticket.",
+                "mongodb_collection": "followers_for_a_ticket",
+                "pythagorazen_status": "inactive"
+            }
+        },
+        {
+            "list_email_ccs_for_a_ticket": {
+                "name": "List Email CCs for a Ticket",
+                "end_point": "/api/v2/tickets/{ticket_id}/email_ccs",
+                "end_point_dependencies": {
+                    "mongodb_dependency_collection": "tickets",
+                    "mongodb_dependency_collection_key": "id"
+                },
+                "request_type": "GET",
+                "url": "https://developer.zendesk.com/api-reference/ticketing/tickets/tickets/#list-email-ccs-for-a-ticket",
+                "description": "Returns any users cc'd on the ticket.",
+                "mongodb_collection": "email_ccs_for_a_ticket",
+                "pythagorazen_status": "inactive"
+            }
+        },
+        {
+            "list_ticket_incidents": {
+                "name": "List Ticket Incidents",
+                "end_point": "/api/v2/tickets/{ticket_id}/incidents",
+                "end_point_dependencies": {
+                    "mongodb_dependency_collection": "tickets",
+                    "mongodb_dependency_collection_key": "id"
+                },
+                "request_type": "GET",
+                "url": "https://developer.zendesk.com/api-reference/ticketing/tickets/tickets/#list-ticket-incidents",
+                "description": "No description",
+                "mongodb_collection": "ticket_incidents",
+                "pythagorazen_status": "inactive"
+            }
+        },
+        {
+            "list_ticket_problems": {
+                "name": "List Ticket Problems",
+                "end_point": "/api/v2/problems",
+                "request_type": "GET",
+                "url": "https://developer.zendesk.com/api-reference/ticketing/tickets/tickets/#list-ticket-problems",
+                "description": "The response is always ordered by updated_at in descending order",
+                "mongodb_collection": "ticket_problems",
+                "pythagorazen_status": "inactive"
+            }
+        },
+        {
+            "list_ticket_comments": {
+                "name": "List Commenets",
+                "end_point": "/api/v2/tickets/{ticket_id}/comments",
+                "end_point_dependencies": {
+                    "mongodb_dependency_collection": "tickets",
+                    "mongodb_dependency_collection_key": "id"
+                },
+                "request_type": "GET",
+                "url": "https://developer.zendesk.com/api-reference/ticketing/tickets/ticket_comments/#list-comments",
+                "description": "Returns the comments added to the ticket.\n\nEach comment may include a content_url for an attachment or a recording_url for a voice comment that points to a file that may be hosted externally. For security reasons, take care not to inadvertently send Zendesk authentication credentials to third parties when attempting to access these files. See Working with url properties.",
+                "mongodb_collection": "ticket_comments",
+                "pythagorazen_status": "inactive"
+            }
+        },
+        {
+            "ticket_forms": {
+                "name": "List Ticket Forms",
+                "end_point": "/api/v2/ticket_forms",
+                "request_type": "GET",
+                "url": "https://developer.zendesk.com/api-reference/ticketing/tickets/ticket_forms/#list-ticket-forms",
+                "description": "Returns a list of all ticket forms for your account if accessed as an admin or agent. End users only see ticket forms that have end_user_visible set to true.",
+                "mongodb_collection": "ticket_forms",
+                "pythagorazen_status": "active"
+            }
+        },
+        {
+            "list_ticket_fields": {
+                "name": "List Ticket Fields",
+                "end_point": "/api/v2/ticket_fields",
+                "request_type": "GET",
+                "url": "https://developer.zendesk.com/api-reference/ticketing/tickets/ticket_fields/#list-ticket-fields",
+                "description": "Returns a list of all system and custom ticket fields in your account.",
+                "mongodb_collection": "ticket_fields",
+                "pythagorazen_status": "active"
+            }
+        },
+        {
+            "list_ticket_field_options": {
+                "name": "List Ticket Fields Options",
+                "end_point": "/api/v2/ticket_fields/{ticket_field_id}/options",
+                "end_point_dependencies": {
+                    "mongodb_dependency_collection": "ticket_fields",
+                    "mongodb_dependency_collection_key": "id"
+                },
+                "request_type": "GET",
+                "url": "https://developer.zendesk.com/api-reference/ticketing/tickets/ticket_fields/#list-ticket-field-options",
+                "description": "Returns a list of custom ticket field options for the given drop-down ticket field.",
+                "mongodb_collection": "ticket_field_options",
+                "pythagorazen_status": "active"
+            }
+        },
+        {
+            "list_requests": {
+                "name": "List Requests",
+                "end_point": "/api/v2/requests",
+                "request_type": "GET",
+                "url": "https://developer.zendesk.com/api-reference/ticketing/tickets/ticket-requests/#list-requests",
+                "description": "Returns a list of custom ticket field options for the given drop-down ticket field.",
+                "mongodb_collection": "requests",
+                "pythagorazen_status": "inactive"
+            }
+        },
+        {
+            "list_all_ticket_audits": {
+                "name": "List All Ticket Audits",
+                "end_point": "/api/v2/ticket_audits",
+                "request_type": "GET",
+                "url": "https://developer.zendesk.com/api-reference/ticketing/tickets/ticket_audits/#list-all-ticket-audits",
+                "description": "Returns ticket audits. Archived tickets are not included in the response. Use the List Audits for a Ticket endpoint to retrieve audit records for an archived ticket. To learn more about archived tickets, see About archived tickets.\n\nThis endpoint should not be used for capturing change data. When continually chasing the tail of a cursor, some records will be skipped. For this use case, use the Incremental Ticket Event Export API.",
+                "mongodb_collection": "all_ticket_audits",
+                "pythagorazen_status": "inactive"
+            }
+        },
+        {
+            "list_ticket_metrics": {
+                "name": "List Ticket Metrics",
+                "end_point": "/api/v2/ticket_metrics",
+                "request_type": "GET",
+                "url": "https://developer.zendesk.com/api-reference/ticketing/tickets/ticket_metrics/#list-ticket-metrics",
+                "description": "Returns a list of tickets with their metrics.\n\nTickets are ordered chronologically by created date, from newest to oldest. The last ticket listed may not be the absolute oldest ticket in your account due to ticket archiving.\n\nArchived tickets are not included in the response. See About archived tickets in Zendesk help.",
+                "mongodb_collection": "ticket_metrics",
+                "pythagorazen_status": "inactive"
+            }
+        },
+        {
+            "list_ticket_activities": {
+                "name": "List Ticket Activities",
+                "end_point": "/api/v2/activities",
+                "request_type": "GET",
+                "url": "https://developer.zendesk.com/api-reference/ticketing/tickets/activity_stream/#list-activities",
+                "description": "Lists ticket activities in the last 30 days affecting the agent making the request. Also sideloads the following arrays of user records:\n\n* actors - All actors involved in the listed activities\n* users - All users involved in the listed activities",
+                "mongodb_collection": "ticket_activities",
+                "pythagorazen_status": "inactive"
+            }
+        },
+        {
+            "list_ticket_skips": {
+                "name": "List Ticket Skips",
+                "end_point": "/api/v2/skips.json",
+                "request_type": "GET",
+                "url": "https://developer.zendesk.com/api-reference/ticketing/tickets/ticket_skips/#list-ticket-skips",
+                "description": "Archived tickets are not included in the response. See About archived tickets in the Support Help Center.",
+                "mongodb_collection": "ticket_activities",
+                "pythagorazen_status": "inactive"
+            }
+        },
+        {
+            "list_suspended_tickets": {
+                "name": "List Suspended Tickets",
+                "end_point": "/api/v2/suspended_tickets",
+                "request_type": "GET",
+                "url": "https://developer.zendesk.com/api-reference/ticketing/tickets/ticket_skips/#list-ticket-skips",
+                "description": "No description",
+                "mongodb_collection": "suspended_tickets",
+                "pythagorazen_status": "inactive"
+            }
+        },
+        {
+            "list_custom_ticket_statuses": {
+                "name": "List Custom Ticket Statuses",
+                "end_point": "/api/v2/custom_statuses",
+                "request_type": "GET",
+                "url": "https://developer.zendesk.com/api-reference/ticketing/tickets/custom_ticket_statuses/#list-custom-ticket-statuses",
+                "description": "No description",
+                "mongodb_collection": "custom_ticket_statuses",
+                "pythagorazen_status": "inactive"
+            }
+        },
+        {
+            "list_sharing_agreements": {
+                "name": "List Sharing Agreements",
+                "end_point": "/api/v2/sharing_agreements",
+                "request_type": "GET",
+                "url": "https://developer.zendesk.com/api-reference/ticketing/tickets/sharing_agreements/#list-sharing-agreements",
+                "description": "No description",
+                "mongodb_collection": "sharing_agreements",
+                "pythagorazen_status": "inactive"
+            }
+        }
+    ],
+    "user_end_points": [
+        {
+            "list_users": {
+                "name": "List Users",
+                "end_point": "/api/v2/users",
+                "request_type": "GET",
+                "url": "https://developer.zendesk.com/api-reference/ticketing/users/users/#list-users",
+                "description": "Returns a maximum of 100 records per page",
+                "mongodb_collection": "users",
+                "pythagorazen_status": "active"
+            }
+        },
+        {
+            "list_deleted_users": {
+                "name": "List Deleted Users",
+                "end_point": "/api/v2/deleted_users",
+                "request_type": "GET",
+                "url": "https://developer.zendesk.com/api-reference/ticketing/users/users/#list-deleted-users",
+                "description": "Returns deleted users, including permanently deleted users.\n\nIf the results contains permanently deleted users, the users' properties that normally contain personal data, such as email and phone, are null. The name property is \"Permanently Deleted User\".",
+                "mongodb_collection": "deleted_users",
+                "pythagorazen_status": "inactive"
+            }
+        },
+        {
+            "list_user_identities": {
+                "name": "List User Identities",
+                "end_point": "/api/v2/users/{user_id}/identities",
+                "end_point_dependencies": {
+                    "mongodb_dependency_collection": "users",
+                    "mongodb_dependency_collection_key": "id"
+                },
+                "request_type": "GET",
+                "url": "https://developer.zendesk.com/api-reference/ticketing/users/user_identities/#list-identities",
+                "description": "Returns a list of identities for the given user.\n\nUse the first endpoint if authenticating as an agent. Use the second if authenticating as an end user. End users can only list email and phone number identities.",
+                "mongodb_collection": "user_identities",
+                "pythagorazen_status": "inactive"
+            }
+        },
+        {
+            "get_user_profiles": {
+                "name": "Get User Profiles",
+                "end_point": "/api/v2/users/{user_id}/profiles",
+                "end_point_dependencies": {
+                    "mongodb_dependency_collection": "users",
+                    "mongodb_dependency_collection_key": "id"
+                },
+                "request_type": "GET",
+                "url": "https://developer.zendesk.com/api-reference/ticketing/users/profiles_api/profiles_api/#get-profiles-by-user-id",
+                "description": "Retrieves the profiles of a specified Zendesk user.",
+                "mongodb_collection": "user_profiles",
+                "pythagorazen_status": "inactive"
+            }
+        },
+        {
+            "list_user_fields": {
+                "name": "List User Fields",
+                "end_point": "/api/v2/user_fields",
+                "request_type": "GET",
+                "url": "https://developer.zendesk.com/api-reference/ticketing/users/user_fields/#list-user-fields",
+                "description": "Returns a list of custom user fields in your account. Fields are returned in the order that you specify in your user fields configuration in Zendesk Support. Clients should cache this resource for the duration of their API usage and map the key for each User Field to the values returned under the user_fields attribute on the User resource.",
+                "mongodb_collection": "user_fields",
+                "pythagorazen_status": "active"
+            }
+        },
+        {
+            "list_user_field_options": {
+                "name": "List User Field Options",
+                "end_point": "/api/v2/user_fields/{user_field_id}/options",
+                "end_point_dependencies": {
+                    "mongodb_dependency_collection": "user_fields",
+                    "mongodb_dependency_collection_key": "id"
+                },
+                "request_type": "GET",
+                "url": "https://developer.zendesk.com/api-reference/ticketing/users/user_fields/#list-user-field-options",
+                "description": "Returns a list of custom user field options for the given dropdown user field.",
+                "mongodb_collection": "user_fields",
+                "pythagorazen_status": "active"
+            }
+        },
+        {
+            "list_user_organizations": {
+                "name": "List User Organizations",
+                "end_point": "/api/v2/users/{user_id}/organizations.json",
+                "end_point_dependencies": {
+                    "mongodb_dependency_collection": "user_fields",
+                    "mongodb_dependency_collection_key": "id"
+                },
+                "request_type": "GET",
+                "url": "https://developer.zendesk.com/api-reference/ticketing/organizations/organizations/#list-organizations",
+                "description": "Returns a maximum of 100 records per page.",
+                "mongodb_collection": "user_organizations",
+                "pythagorazen_status": "active"
+            }
+        },
+        {
+            "list_user_groups": {
+                "name": "List User Group Memberships",
+                "end_point": "/api/v2/users/{user_id}/group_memberships",
+                "end_point_dependencies": {
+                    "mongodb_dependency_collection": "user_fields",
+                    "mongodb_dependency_collection_key": "id"
+                },
+                "request_type": "GET",
+                "url": "https://developer.zendesk.com/api-reference/ticketing/groups/group_memberships/#list-memberships",
+                "description": "Returns a maximum of 100 records per page.",
+                "mongodb_collection": "user_groups",
+                "pythagorazen_status": "active"
+            }
+        }
+    ],
+    "organizastion_end_points": [
+        {
+            "list_organizations": {
+                "name": "List Organizations",
+                "end_point": "/api/v2/organizations",
+                "request_type": "GET",
+                "url": "https://developer.zendesk.com/api-reference/ticketing/organizations/organizations/#list-organizations",
+                "description": "Returns a maximum of 100 records per page.",
+                "mongodb_collection": "organizations",
+                "pythagorazen_status": "active"
+            }
+        },
+        {
+            "list_organization_memberships": {
+                "name": "List Organization Memberships",
+                "end_point": "/api/v2/organization_memberships",
+                "request_type": "GET",
+                "url": "https://developer.zendesk.com/api-reference/ticketing/organizations/organization_memberships/#list-memberships",
+                "description": "Returns a maximum of 100 records per page.",
+                "mongodb_collection": "organization_memberships",
+                "pythagorazen_status": "active"
+            }
+        },
+        {
+            "list_organization_fields": {
+                "name": "List Organization Fields",
+                "end_point": "/api/v2/organization_fields",
+                "request_type": "GET",
+                "url": "https://developer.zendesk.com/api-reference/ticketing/organizations/organization_fields/#list-organization-fields",
+                "description": "Returns a list of custom organization fields in your account. Fields are returned in the order that you specify in your organization fields configuration in Zendesk Support. Clients should cache this resource for the duration of their API usage and map the key for each organization field to the values returned under the organization_fields attribute on the organization resource.",
+                "mongodb_collection": "organization_fields",
+                "pythagorazen_status": "active"
+            }
+        },
+        {
+            "list_organization_subscriptions": {
+                "name": "List Organization Subscriptions",
+                "end_point": "/api/v2/organization_subscriptions",
+                "request_type": "GET",
+                "url": "https://developer.zendesk.com/api-reference/ticketing/organizations/organization_subscriptions/#list-organization-subscriptions",
+                "description": "Returns a list of custom organization fields in your account. Fields are returned in the order that you specify in your organization fields configuration in Zendesk Support. Clients should cache this resource for the duration of their API usage and map the key for each organization field to the values returned under the organization_fields attribute on the organization resource.",
+                "mongodb_collection": "organization_subscriptions",
+                "pythagorazen_status": "active"
+            }
+        }
+    ],
+    "group_end_points": [
+        {
+            "list_groups": {
+                "name": "List Groups",
+                "end_point": "/api/v2/groups",
+                "request_type": "GET",
+                "url": "https://developer.zendesk.com/api-reference/ticketing/groups/groups/#list-groups",
+                "description": "Returns a maximum of 100 records per page.",
+                "mongodb_collection": "groups",
+                "pythagorazen_status": "active"
+            }
+        },
+        {
+            "list_assignable_groups": {
+                "name": "List Assignable Groups",
+                "end_point": "/api/v2/groups/assignable",
+                "request_type": "GET",
+                "url": "https://developer.zendesk.com/api-reference/ticketing/groups/groups/#list-groups",
+                "description": "Returns a maximum of 100 records per page.",
+                "mongodb_collection": "groups",
+                "pythagorazen_status": "active"
+            }
+        },
+        {
+            "list_group_memberships": {
+                "name": "List Group Memberships",
+                "end_point": "/api/v2/group_memberships",
+                "request_type": "GET",
+                "url": "https://developer.zendesk.com/api-reference/ticketing/groups/group_memberships/#list-memberships",
+                "description": "Returns a maximum of 100 records per page.",
+                "mongodb_collection": "group_memberships",
+                "pythagorazen_status": "active"
+            }
+        },
+        {
+            "list_assignable_group_memberships": {
+                "name": "List Group Memberships",
+                "end_point": "/api/v2/group_memberships/assignable",
+                "request_type": "GET",
+                "url": "https://developer.zendesk.com/api-reference/ticketing/groups/group_memberships/#list-assignable-memberships",
+                "description": "Returns a maximum of 100 records per page.",
+                "mongodb_collection": "assignable_group_memberships",
+                "pythagorazen_status": "active"
+            }
+        }
+    ],
+    "ticket_management_endpoints": [
+        {
+            "list_tags": {
+                "name": "List Tags",
+                "end_point": "/api/v2/tags",
+                "request_type": "GET",
+                "url": "https://developer.zendesk.com/api-reference/ticketing/ticket-management/tags/#list-tags",
+                "description": "Lists up to the 20,000 most popular tags in the last 60 days, in decreasing popularity.",
+                "mongodb_collection": "tags",
+                "pythagorazen_status": "active"
+            }
+        },
+        {
+            "list_satisfaction_ratings": {
+                "name": "List Satisfaction Ratings",
+                "end_point": "/api/v2/satisfaction_ratings",
+                "request_type": "GET",
+                "url": "https://developer.zendesk.com/api-reference/ticketing/ticket-management/satisfaction_ratings/#list-satisfaction-ratings",
+                "description": "No description",
+                "mongodb_collection": "satisfaction_ratings",
+                "pythagorazen_status": "active"
+            }
+        },
+        {
+            "list_reasons_for_satisfaction_rating": {
+                "name": "List Reasons for Satisfaction Rating",
+                "end_point": "/api/v2/satisfaction_reasons",
+                "request_type": "GET",
+                "url": "https://developer.zendesk.com/api-reference/ticketing/ticket-management/satisfaction_ratings/#list-satisfaction-ratings",
+                "description": "No description",
+                "mongodb_collection": "reasons_for_satisfaction_rating",
+                "pythagorazen_status": "active"
+            }
+        },
+        {
+            "list_dynamic_content_items": {
+                "name": "List Dynamic Content Items",
+                "end_point": "/api/v2/dynamic_content/items",
+                "request_type": "GET",
+                "url": "https://developer.zendesk.com/api-reference/ticketing/ticket-management/dynamic_content/#list-items",
+                "description": "Returns a list of all dynamic content items for your account if accessed as an admin or agents who have permission to manage dynamic content.",
+                "mongodb_collection": "dynamic_content_items",
+                "pythagorazen_status": "active"
+            }
+        },
+        {
+            "list_dynamic_content_variants": {
+                "name": "List Dynamic Content Variants",
+                "end_point": "/api/v2/dynamic_content/items/{dynamic_content_item_id}/variants",
+                "end_point_dependencies": {
+                    "mongodb_dependency_collection": "dynamic_content_items",
+                    "mongodb_dependency_collection_key": "id"
+                },
+                "request_type": "GET",
+                "url": "https://developer.zendesk.com/api-reference/ticketing/ticket-management/dynamic_content_item_variants/#list-variants",
+                "description": "Returns all the variants of the specified dynamic content item.",
+                "mongodb_collection": "dynamic_content_variants",
+                "pythagorazen_status": "active"
+            }
+        },
+        {
+            "list_schedules": {
+                "name": "List Schedules",
+                "end_point": "/api/v2/business_hours/schedules",
+                "request_type": "GET",
+                "url": "https://developer.zendesk.com/api-reference/ticketing/ticket-management/schedules/#list-schedules",
+                "description": "No description",
+                "mongodb_collection": "schedules",
+                "pythagorazen_status": "active"
+            }
+        }
+    ],
+    "business_rule_enpoints": [
+        {
+            "list_views": {
+                "name": "List Views",
+                "end_point": "/api/v2/views",
+                "request_type": "GET",
+                "url": "https://developer.zendesk.com/api-reference/ticketing/business-rules/views/#list-views",
+                "description": "Lists shared and personal views available to the current user.",
+                "mongodb_collection": "views",
+                "pythagorazen_status": "active"
+            }
+        },
+        {
+            "list_triggers": {
+                "name": "List Triggers",
+                "end_point": "/api/v2/triggers",
+                "request_type": "GET",
+                "url": "https://developer.zendesk.com/api-reference/ticketing/business-rules/triggers/#list-triggers",
+                "description": "Lists all triggers for the current account.",
+                "mongodb_collection": "triggers",
+                "pythagorazen_status": "active"
+            }
+        },
+        {
+            "list_trigger_action_and_condition_definitions": {
+                "name": "List Trigger Action and Condition Definitions",
+                "end_point": "/api/v2/triggers/definitions",
+                "request_type": "GET",
+                "url": "https://developer.zendesk.com/api-reference/ticketing/business-rules/triggers/#list-triggers",
+                "description": "Returns the definitions of the actions a trigger can perform and the definitions of the conditions under which a trigger can execute. The definition of the action includes a title (\"Status\"), a type (\"list\"), and possible values. The definition of the condition includes the same fields as well as the possible operators.",
+                "mongodb_collection": "trigger_action_and_condition_definitions",
+                "pythagorazen_status": "active"
+            }
+        },
+        {
+            "list_trigger_revisions": {
+                "name": "List Trigger Revisions",
+                "end_point": "/api/v2/triggers/{trigger_id}/revisions",
+                "end_point_dependencies": {
+                    "mongodb_dependency_collection": "triggers",
+                    "mongodb_dependency_collection_key": "id"
+                },
+                "request_type": "GET",
+                "url": "https://developer.zendesk.com/api-reference/ticketing/business-rules/triggers/#list-trigger-revisions",
+                "description": "List the revisions associated with a trigger. Trigger revision history is only available on Enterprise plans.",
+                "mongodb_collection": "trigger_revisions",
+                "pythagorazen_status": "active"
+            }
+        },
+        {
+            "list_trigger_categories": {
+                "name": "List Trigger Categories",
+                "end_point": "/api/v2/trigger_categories",
+                "request_type": "GET",
+                "url": "https://developer.zendesk.com/api-reference/ticketing/business-rules/trigger_categories/#list-trigger-categories",
+                "description": "Returns all the trigger categories in the account.",
+                "mongodb_collection": "trigger_categories",
+                "pythagorazen_status": "active"
+            }
+        },
+        {
+            "list_macros": {
+                "name": "List Macros",
+                "end_point": "/api/v2/macros",
+                "request_type": "GET",
+                "url": "https://developer.zendesk.com/api-reference/ticketing/business-rules/macros/#list-macros",
+                "description": "Lists all shared and personal macros available to the current user. For admins, the API returns all macros for the account, including the personal macros of agents and other admins.",
+                "mongodb_collection": "macros",
+                "pythagorazen_status": "active"
+            }
+        },
+        {
+            "list_macro_categories": {
+                "name": "List Macro Categories",
+                "end_point": "/api/v2/macros/categories",
+                "request_type": "GET",
+                "url": "https://developer.zendesk.com/api-reference/ticketing/business-rules/macros/#list-macro-categories",
+                "description": "Lists all macro categories available to the current user.",
+                "mongodb_collection": "macro_categories",
+                "pythagorazen_status": "active"
+            }
+        },
+        {
+            "list_macro_actions": {
+                "name": "List Supported Actions for Macros",
+                "end_point": "/api/v2/macros/actions",
+                "request_type": "GET",
+                "url": "https://developer.zendesk.com/api-reference/ticketing/business-rules/macros/#list-supported-actions-for-macros",
+                "description": "No description",
+                "mongodb_collection": "macro_actions",
+                "pythagorazen_status": "active"
+            }
+        },
+        {
+            "list_macro_action_definitions": {
+                "name": "List Macro Action Definitions",
+                "end_point": "/api/v2/macros/definitions",
+                "request_type": "GET",
+                "url": "https://developer.zendesk.com/api-reference/ticketing/business-rules/macros/#list-macro-action-definitions",
+                "description": "Returns the definitions of the actions a macro can perform. For example, one action can set the status of a ticket. The definition of the action includes a title (\"Status\"), a type (\"list\"), and possible values. For a list of support actions, see Actions reference.",
+                "mongodb_collection": "macro_action_definitions",
+                "pythagorazen_status": "active"
+            }
+        },
+        {
+            "list_macro_attachments": {
+                "name": "List Macro Attachments",
+                "end_point": "/api/v2/macros/{macro_id}/attachments",
+                "end_point_dependencies": {
+                    "mongodb_dependency_collection": "macros",
+                    "mongodb_dependency_collection_key": "id"
+                },
+                "request_type": "GET",
+                "url": "https://developer.zendesk.com/api-reference/ticketing/business-rules/macros/#list-macro-action-definitions",
+                "description": "Returns the definitions of the actions a macro can perform. For example, one action can set the status of a ticket. The definition of the action includes a title (\"Status\"), a type (\"list\"), and possible values. For a list of support actions, see Actions reference.",
+                "mongodb_collection": "macro_action_definitions",
+                "pythagorazen_status": "active"
+            }
+        },
+        {
+            "list_automations": {
+                "name": "List Automations",
+                "end_point": "/api/v2/automations",
+                "request_type": "GET",
+                "url": "https://developer.zendesk.com/api-reference/ticketing/business-rules/automations/#list-automations",
+                "description": "Lists all automations for the current account.",
+                "mongodb_collection": "automations",
+                "pythagorazen_status": "active"
+            }
+        },
+        {
+            "list_sla_policies": {
+                "name": "List SLA Policies",
+                "end_point": "/api/v2/slas/policies",
+                "request_type": "GET",
+                "url": "https://developer.zendesk.com/api-reference/ticketing/business-rules/sla_policies/#list-sla-policies",
+                "description": "No description",
+                "mongodb_collection": "sla_policies",
+                "pythagorazen_status": "active"
+            }
+        },
+        {
+            "list_group_sla_policies": {
+                "name": "List Group SLA Policies",
+                "end_point": "/api/v2/group_slas/policies",
+                "request_type": "GET",
+                "url": "https://developer.zendesk.com/api-reference/ticketing/business-rules/group_sla_policies/#list-group-sla-policies",
+                "description": "No description",
+                "mongodb_collection": "group_sla_policies",
+                "pythagorazen_status": "active"
+            }
+        }
+    ],
+    "account_configuration": [
+        {
+            "list_account_subscription": {
+                "name": "List Account Subscription",
+                "end_point": "/api/v2/account/subscription",
+                "request_type": "GET",
+                "url": "",
+                "description": "Undocumented API",
+                "mongodb_collection": "account_subscription",
+                "pythagorazen_status": "active"
+            }
+        },
+        {
+            "list_custom_roles": {
+                "name": "List Custom Roles",
+                "end_point": "/api/v2/custom_roles",
+                "request_type": "GET",
+                "url": "https://developer.zendesk.com/api-reference/ticketing/account-configuration/custom_roles/#list-custom-roles",
+                "description": "No description",
+                "mongodb_collection": "custom_roles",
+                "pythagorazen_status": "active"
+            }
+        },
+        {
+            "list_account_settings": {
+                "name": "List Account Settings",
+                "end_point": "/api/v2/account/settings",
+                "request_type": "GET",
+                "url": "https://developer.zendesk.com/api-reference/ticketing/account-configuration/account_settings/#show-settings",
+                "description": "No description",
+                "mongodb_collection": "account_settings",
+                "pythagorazen_status": "active"
+            }
+        },
+        {
+            "list_support_addresses": {
+                "name": "List Support Addresses",
+                "end_point": "/api/v2/recipient_addresses",
+                "request_type": "GET",
+                "url": "https://developer.zendesk.com/api-reference/ticketing/account-configuration/support_addresses/#list-support-addresses",
+                "description": "Lists all the support addresses for the account.",
+                "mongodb_collection": "support_addresses",
+                "pythagorazen_status": "active"
+            }
+        },
+        {
+            "list_sessions": {
+                "name": "List Sessions",
+                "end_point": "/api/v2/sessions",
+                "request_type": "GET",
+                "url": "https://developer.zendesk.com/api-reference/ticketing/account-configuration/sessions/#list-sessions",
+                "description": "If authenticated as an admin, returns all the account's sessions. If authenticated as an agent or end user, returns only the sessions of the user making the request."
+            }
+        },
+        {
+            "list_user_sessions": {
+                "name": "List Sessions",
+                "end_point": "/api/v2/users/{user_id}/sessions.json",
+                "end_point_dependencies": {
+                    "mongodb_dependency_collection": "users",
+                    "mongodb_dependency_collection_key": "id"
+                },
+                "request_type": "GET",
+                "url": "https://developer.zendesk.com/api-reference/ticketing/account-configuration/sessions/#list-sessions",
+                "description": "If authenticated as an admin, returns all the account's sessions. If authenticated as an agent or end user, returns only the sessions of the user making the request."
+            }
+        },
+        {
+            "list_brands": {
+                "name": "List Brands",
+                "end_point": "/api/v2/brands",
+                "request_type": "GET",
+                "url": "https://developer.zendesk.com/api-reference/ticketing/account-configuration/brands/#list-brands",
+                "description": "Returns a list of all brands for your account sorted by name.",
+                "mongodb_collection": "brands",
+                "pythagorazen_status": "active"
+            }
+        },
+        {
+            "list_locales": {
+                "name": "List Locales",
+                "end_point": "/api/v2/locales",
+                "request_type": "GET",
+                "url": "https://developer.zendesk.com/api-reference/ticketing/account-configuration/locales/#list-locales",
+                "description": "Lists the translation locales available for the account.\n\nNote: You can alter the list by passing an updated locale_ids array to the Update Account Settings endpoint.",
+                "mongodb_collection": "locales",
+                "pythagorazen_status": "active"
+            }
+        },
+        {
+            "list_audit_logs": {
+                "name": "List Audit Logs",
+                "end_point": "/api/v2/audit_logs",
+                "request_type": "GET",
+                "url": "https://developer.zendesk.com/api-reference/ticketing/account-configuration/audit_logs/#list-audit-logs",
+                "description": "Returns a maximum of 100 records per page."
+            }
+        },
+        {
+            "list_access_logs": {
+                "name": "List Access Logs",
+                "end_point": "/api/v2/access_logs",
+                "request_type": "GET",
+                "url": "https://developer.zendesk.com/api-reference/ticketing/account-configuration/audit_logs/#list-audit-logs",
+                "description": "Returns a maximum of 100 records per page."
+            }
+        },
+        {
+            "list_zendesk_public_ips": {
+                "name": "List Zendesk Public IPs",
+                "end_point": "/ips",
+                "request_type": "GET",
+                "url": "https://developer.zendesk.com/api-reference/ticketing/account-configuration/public_ips/#list-zendesk-public-ips",
+                "description": "Returns a maximum of 100 records per page.",
+                "mongodb_collection": "zendesk_public_ips",
+                "pythagorazen_status": "active"                
+            }
+        }
+    ],
+    "oauth_endpoints": [
+        {
+            "list_oauth_tokens": {
+                "name": "List OAuth Tokens",
+                "end_point": "/api/v2/oauth/tokens",
+                "request_type": "GET",
+                "url": "https://developer.zendesk.com/api-reference/ticketing/oauth/oauth_tokens/#list-tokens",
+                "description": "Returns the properties of the tokens. For security reasons, only the first 10 characters of each access token are included.",
+                "mongodb_collection": "oauth_tokens",
+                "pythagorazen_status": "active"                
+            }
+        },
+        {
+            "list_oauth_clients": {
+                "name": "List OAuth Clients",
+                "end_point": "/api/v2/oauth/clients",
+                "request_type": "GET",
+                "url": "https://developer.zendesk.com/api-reference/ticketing/oauth/oauth_clients/#list-clients",
+                "description": "Returns a maximum of 100 records per page.",
+                "mongodb_collection": "oauth_clients",
+                "pythagorazen_status": "active"                
+            }
+        },
+        {
+            "list_global_oauth_clients": {
+                "name": "List Global OAuth Clients",
+                "end_point": "/api/v2/oauth/global_clients",
+                "request_type": "GET",
+                "url": "https://developer.zendesk.com/api-reference/ticketing/oauth/global_clients/#list-global-oauth-clients",
+                "description": "Returns all the global OAuth clients that users on your account have authorized.",
+                "mongodb_collection": "global_oauth_clients",
+                "pythagorazen_status": "active"                
+            }
+        }
+    ],
+    "app_endpoints": [
+        {
+            "list_all_apps": {
+                "name": "List All Apps",
+                "end_point": "/api/v2/apps",
+                "request_type": "GET",
+                "url": "https://developer.zendesk.com/api-reference/ticketing/apps/apps/#list-all-apps",
+                "description": "Lists all public apps on the Zendesk Marketplace. For authenticated agents and admins, the endpoint also lists their account's private apps.",
+                "mongodb_collection": "all_apps",
+                "pythagorazen_status": "inactive"                
+            }
+        },
+        {
+            "list_owned_apps": {
+                "name": "List Owned Apps",
+                "end_point": "/api/v2/apps/owned",
+                "request_type": "GET",
+                "url": "https://developer.zendesk.com/api-reference/ticketing/apps/apps/#list-owned-apps",
+                "description": "Lists apps owned by the current account.",
+                "mongodb_collection": "owned_apps",
+                "pythagorazen_status": "active"                
+            }
+        },
+        {
+            "list_app_installations": {
+                "name": "List App Installations",
+                "end_point": "/api/v2/apps/installations",
+                "request_type": "GET",
+                "url": "https://developer.zendesk.com/api-reference/ticketing/apps/apps/#list-app-installations",
+                "description": "Lists all app installations in the account. In the response, the enabled property indicates whether or not the installed app is active in the product.",
+                "mongodb_collection": "app_installations",
+                "pythagorazen_status": "active"                
+            }
+        },
+        {
+            "list_app_requirements": {
+                "name": "List App Requirements",
+                "end_point": "/api/v2/apps/installations/{app_installation_id}/requirements",
+                "end_point_dependencies": {
+                    "mongodb_dependency_collection": "app_installations",
+                    "mongodb_dependency_collection_key": "id"
+                },                
+                "request_type": "GET",
+                "url": "https://developer.zendesk.com/api-reference/ticketing/apps/apps/#list-app-installations",
+                "description": "Lists all app installations in the account. In the response, the enabled property indicates whether or not the installed app is active in the product.",
+                "mongodb_collection": "app_requirements",
+                "pythagorazen_status": "active"                
+            }
+        }
+    ],
+    "target_endpoints": [
+        {
+            "list_targets": {
+                "name": "List Targets",
+                "end_point": "/api/v2/targets",
+                "request_type": "GET",
+                "url": "https://developer.zendesk.com/api-reference/ticketing/targets/targets/#list-targets",
+                "description": "No description",
+                "mongodb_collection": "targets",
+                "pythagorazen_status": "active"                
+            }
+        }
+    ]
+}
