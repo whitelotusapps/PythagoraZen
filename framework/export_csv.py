@@ -1,5 +1,6 @@
 import csv
 import logging
+import inspect
 
 from PyQt5.QtWidgets import QTableWidget
 

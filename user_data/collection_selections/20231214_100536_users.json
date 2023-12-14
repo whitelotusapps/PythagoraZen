@@ -1,0 +1,13 @@
+{
+    "timestamp": "20231214_100536",
+    "zendesk_instance": "d3v-kairosnature",
+    "collection_name": "users",
+    "selected_keys": [
+        "active",
+        "name",
+        "tags.tags.0",
+        "tags.tags.1",
+        "tags.tags.2"
+    ],
+    "report_description": "2023-12-14 - Demo"
+}

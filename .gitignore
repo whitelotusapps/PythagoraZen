@@ -9,4 +9,3 @@ __init__.py
 __pycache__/
 LOGS/
 config_data/credentials/
-user_data/
