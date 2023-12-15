@@ -1,35 +1,36 @@
 import logging
 import inspect
 from framework.logging_handler import PythagoraZenLogger
-
+from framework.instance_database_operations_api_endpoint_config import ZendeskInstanceDatabaseOperationsMongoDB
 
 class PipelineOperations:
     def __init__(
         self,
-        user_collection,
-        organization_collection,
-        group_collection,
-        custom_role_collection,
-        zendesk_subdomain,
+        zendesk_subdomain
     ):
         self.pythagorazen_logger = PythagoraZenLogger()
         self.pythagorazen_logger.configure_logging()
         logging.debug(f"{inspect.currentframe().f_code.co_name}")                
-        self.user_collection = user_collection
-        self.organization_collection = organization_collection
-        self.group_collection = group_collection
-        self.custom_role_collection = custom_role_collection
         self.zendesk_subdomain = zendesk_subdomain
+        
+        self.user_collection = ZendeskInstanceDatabaseOperationsMongoDB(self.zendesk_subdomain, "users")
+        self.organization_collection = ZendeskInstanceDatabaseOperationsMongoDB(self.zendesk_subdomain, "organizations")
+        self.group_collection = ZendeskInstanceDatabaseOperationsMongoDB(self.zendesk_subdomain, "groups")
+        self.custom_role_collection = ZendeskInstanceDatabaseOperationsMongoDB(self.zendesk_subdomain, "custom_roles")
 
+        logging.debug(f"self.user_collection         : {self.user_collection}")
+        logging.debug(f"self.organization_collection : {self.organization_collection}")
+        logging.debug(f"self.group_collection        : {self.group_collection}")
+        logging.debug(f"self.custom_role_collection  : {self.custom_role_collection}")        
 
     def update_user_data(self):
         logging.debug(f"{inspect.currentframe().f_code.co_name}")
-        logging.info(f"pipeline subdomain: {self.zendesk_subdomain}")
-        logging.info(f"user_collection: {self.user_collection}")
-        logging.info(f"organization_collection: {self.organization_collection}")
+        logging.debug(f"pipeline subdomain: {self.zendesk_subdomain}")
+        logging.debug(f"user_collection: {self.user_collection}")
+        logging.debug(f"organization_collection: {self.organization_collection}")
 
         # Get all users from the user collection
-        users = list(self.user_collection.find())
+        users = list(self.user_collection.query_collection())
 
         modified_users = []
 
@@ -39,7 +40,7 @@ class PipelineOperations:
             organization_name = "No Organization"  # Default value
 
             if organization_id:
-                organization = self.organization_collection.find_one(
+                organization = self.organization_collection.query_collection_find_one(
                     {"id": organization_id}
                 )
                 if organization:
@@ -49,7 +50,7 @@ class PipelineOperations:
             default_group_name = "None"
 
             if default_group_id:
-                default_group = self.group_collection.find_one({"id": default_group_id})
+                default_group = self.group_collection.query_collection_find_one({"id": default_group_id})
                 if default_group:
                     default_group_name = default_group.get("name")
 
@@ -57,7 +58,7 @@ class PipelineOperations:
             custom_role_name = "None"
 
             if custom_role_id:
-                custom_role = self.custom_role_collection.find_one(
+                custom_role = self.custom_role_collection.query_collection_find_one(
                     {"id": custom_role_id}
                 )
                 if custom_role:

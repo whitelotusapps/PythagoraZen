@@ -59,6 +59,12 @@ class ZendeskInstanceDatabaseOperationsMongoDB:
         logging.debug(f"Projection: {projection}")
         return list(self.collection.find(query, projection))
 
+    def query_collection_find_one(self, query={}, projection=None):
+        logging.debug(f"{inspect.currentframe().f_code.co_name}")
+        logging.debug(f"Query: {query}")
+        logging.debug(f"Projection: {projection}")
+        return self.collection.find_one(query, projection)
+
     """
     def query_collection(self, query={}):
         return list(self.collection.find(query))

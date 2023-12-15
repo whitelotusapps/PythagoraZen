@@ -6,7 +6,6 @@ import logging
 from PyQt5.QtCore import QObject, pyqtSignal
 from PyQt5.QtWidgets import QDialog
 
-# from framework.instance_database_operations_mongodb import ZendeskInstanceDatabaseOperationsMongoDB
 from framework.instance_database_operations_api_endpoint_config import (
     ZendeskInstanceDatabaseOperationsMongoDB,
 )
@@ -139,13 +138,7 @@ class Plugin(PluginInterface, QObject):
                         # self.filename()
                         logging.info("USER PIPELINE CONDITION MET")
                         logging.info(f"ZENDESK SUBDOMAIN: {zendesk_subdomain}")
-                        pipeline_operations = PipelineOperations(
-                            self.instance_operations.users_collection,
-                            self.instance_operations.organizations_collection,
-                            self.instance_operations.groups_collection,
-                            self.instance_operations.custom_roles_collection,
-                            zendesk_subdomain,  # Pass the zendesk_subdomain here
-                        )
+                        pipeline_operations = PipelineOperations(zendesk_subdomain)
                         # Use the modified user data from the pipeline
                         modified_users = pipeline_operations.update_user_data()
                         # Update the table view using the modified data
