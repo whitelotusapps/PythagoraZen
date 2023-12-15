@@ -4,6 +4,8 @@ _"Big things have small beginnings"_ - **T.E. Lawrence (Lawrence of Arabia, 1962
 
 **Full transparency:** _ChatGPT 3.5 wholehartedly assisted in the development of this application._
 
+[![2023-12-14 PythagoraZen Demo](https://img.youtube.com/vi/kGV3Hy0xk-Q/0.jpg)](https://www.youtube.com/watch?v=kGV3Hy0xk-Q)
+
 ## Installation
 
 ### A local installation of [MongoDB Community Server](https://www.mongodb.com/try/download/community-edition) is a prerequisite.
