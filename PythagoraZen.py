@@ -17,13 +17,19 @@ from PyQt5.QtWidgets import (
     QWidget,
 )
 
+from framework.logging_handler import PythagoraZenLogger
+
+pythagorazen_logger = PythagoraZenLogger()
+pythagorazen_logger.create_logfile()
+pythagorazen_logger.configure_logging()        
+
 from framework.credential_database_operations import CredentialDatabaseOperations
 from framework.credential_database_settings_dialog import (
     CredentialDatabaseSettingsDialog,
 )
 from framework.plugin_window import PluginWindow  # Import from the new plugin
 from framework.signal_manager import SignalManager
-from framework.logging_handler import PythagoraZenLogger
+
 
 os.system("clear")
 
@@ -55,8 +61,6 @@ class ZendeskAdminApp(QMainWindow):
     def __init__(self):
         super().__init__()
         self.signal_manager = SignalManager()
-        self.pythagorazen_logger = PythagoraZenLogger()
-        self.pythagorazen_logger.configure_logging()        
         logging.debug(f"{inspect.currentframe().f_code.co_name}")        
         self.initDatabase()
 
